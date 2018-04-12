@@ -22,6 +22,7 @@ namespace DotNet
     {
         public MainWindow()
         {
+            Image
             InitializeComponent();
         }
     }
