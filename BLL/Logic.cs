@@ -16,13 +16,13 @@ namespace BLL
             BllPost GetBLLPOST = null;
             Function function = new Function();
             User TestUser = function.GetUser(login, password);
-            //BllUser bllUser = null;
-            //MessageBox.Show(TestUser.Name);
             if (TestUser!=null)
             {
-                Post post = function.GetPostUser(TestUser);
-                GetBLLPOST = MyConvert.PostToBllPost(post);
-                //GetBLLPOST= ListPost.Where
+                if (TestUser.Login == login && TestUser.Password == password)
+                {
+                    Post post = function.GetPostUser(TestUser);
+                    GetBLLPOST = MyConvert.PostToBllPost(post);
+                }
             }
 
             return GetBLLPOST;

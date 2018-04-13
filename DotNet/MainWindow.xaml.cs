@@ -24,12 +24,9 @@ namespace DotNet
     {
         public MainWindow()
         {
-           
             InitializeComponent();
             Progress.Visibility = Visibility.Hidden;
         }
-
-
 
         private void RegNewProvider_Click(object sender, MouseButtonEventArgs e)
         {
@@ -41,23 +38,58 @@ namespace DotNet
             Close();
         }
 
+        private void BlockControl()
+        {
+            ExitButton.IsEnabled = false;
+            LoginButton.IsEnabled = false;
+            LogInBox.IsEnabled = false;
+            passwordBox.IsEnabled = false;
+            RegNewProvider.IsEnabled = false;
+           
+        }
+
+        private void UnBlockControl()
+        {
+            ExitButton.IsEnabled = true;
+            LoginButton.IsEnabled = true;
+            LogInBox.IsEnabled = true;
+            passwordBox.IsEnabled = true;
+            RegNewProvider.IsEnabled = true;
+        }
+
         private async void LogIn_Click(object sender, RoutedEventArgs e)
         {
+            BlockControl();
             string login = LogInBox.Text;
             string password = passwordBox.Password;
             Progress.Visibility = Visibility.Visible;
             BllPost LoginPost = await Task.Run(() =>
               {
-                  Logic BLLLogic = new Logic();
-                  return BLLLogic.GetPostLogin(login, password);
+                  Logic BllLogic = new Logic();
+                  return BllLogic.GetPostLogin(login, password);
               });
             CheckLogin(LoginPost);
             Progress.Visibility = Visibility.Hidden;
+            if(LoginPost!=null)
+            {
+                MessageBox.Show(LoginPost.Name);
+            }
+            UnBlockControl();
         }
 
         private void CheckLogin(BllPost LoginPost)
         {
            
+        }
+
+
+
+        private void MetroWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key==Key.Enter)
+            {
+                LogIn_Click(null, null);
+            }
         }
     }
 }

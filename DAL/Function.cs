@@ -14,7 +14,9 @@ namespace DAL
             User GetUser = null;
             using (Shop shop = new Shop())
             {
-                GetUser = shop.Users.Where(x => x.Login == login && x.Password == password).FirstOrDefault();
+                GetUser = shop.Users.Where(x => x.Login.Equals(login)
+                                           && x.Password.Equals(password)).
+                                           FirstOrDefault();
             };
             return GetUser;
         }

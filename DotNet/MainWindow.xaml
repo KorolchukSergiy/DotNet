@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:DotNet"
         
         mc:Ignorable="d"
-        Title="Login" Height="500" Width="400" >
+        Title="Login" Height="500" Width="400" KeyDown="MetroWindow_KeyDown">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="Backgraund.jpg" Stretch="UniformToFill"/>
@@ -28,12 +28,14 @@
         </Grid.ColumnDefinitions>
 
 
-        <Button  Margin="5" Grid.Row="3" Grid.Column="1" Content="Exit" Click="Exit_Click" Foreground="GreenYellow">
+        <Button  Margin="5" Grid.Row="3" Grid.Column="1" Content="Exit"
+                 Click="Exit_Click" Foreground="GreenYellow" x:Name="ExitButton">
             <Button.Background>
                 <SolidColorBrush Color="#CCB4B4B4"/>
             </Button.Background>
         </Button>
-        <Button  Margin="5" Grid.Row="3" Grid.Column="2" Content="LogIn" Click="LogIn_Click" Foreground="GreenYellow">
+        <Button  Margin="5" Grid.Row="3" Grid.Column="2" Content="LogIn"
+                 Click="LogIn_Click" Foreground="GreenYellow" x:Name="LoginButton">
             <Button.Background>
                 <SolidColorBrush Color="#CCB4B4B4"/>
             </Button.Background>
@@ -45,7 +47,7 @@
                Foreground="GreenYellow"  FontSize="16">Password</Label>
 
         <TextBox Grid.Column="2" Grid.Row="1" Margin="5" x:Name="LogInBox"
-                 VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+                 VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
                Foreground="GreenYellow">
             <TextBox.Background>
                 <SolidColorBrush Color="#CCB4B4B4"/>
@@ -53,7 +55,7 @@
         </TextBox>
 
         <PasswordBox Grid.Column="2" Grid.Row="2" Margin="5" x:Name="passwordBox"
-                     VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+                     VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
                Foreground="GreenYellow">
             <PasswordBox.Background>
                 <SolidColorBrush Color="#CCB4B4B4"/>
@@ -61,7 +63,8 @@
         </PasswordBox>
 
         <Label Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" VerticalContentAlignment="Center"
-               HorizontalContentAlignment="Center" PreviewMouseDown="RegNewProvider_Click">Registration new provider
+               HorizontalContentAlignment="Center" PreviewMouseDown="RegNewProvider_Click"
+               x:Name="RegNewProvider">Registration new provider
             <Label.Style>
                 <Style>
                     <Setter Property="Label.Foreground" Value="GreenYellow"/>
