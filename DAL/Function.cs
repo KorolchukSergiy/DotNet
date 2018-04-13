@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.IO;
+using System.Drawing;
 
 namespace DAL
 {
@@ -29,6 +31,7 @@ namespace DAL
                 GetListPost = shop.Posts.Local.ToList();
             };
             return GetListPost;
+            
         }
 
         public Post GetPostUser(User user)

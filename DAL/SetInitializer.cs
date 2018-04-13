@@ -2,7 +2,7 @@
 using System.Data.Entity;
 using System.IO;
 using System.Drawing;
-using System.Windows;
+
 
 namespace DAL
 {
@@ -56,12 +56,14 @@ namespace DAL
                 Socket = "1151",
                 Video = "No",
                 Core = 4,
-                Thread = 8,
+                Threads = 8,
                 Cash = "8 Mb",
-                SalryPrice = 10000,
+                SaleryPrice = 10000,
                 Image = ms.ToArray(),
                 BuyPrice = 7000,
-                Provider = KTC
+                Provider = KTC,
+                Quantity=2,
+                Frequency=3300
             };
 
             ms = new MemoryStream();
@@ -75,12 +77,14 @@ namespace DAL
                 Socket = "Am4",
                 Video = "No",
                 Core = 8,
-                Thread = 8,
+                Threads = 8,
                 Cash = "4 Mb",
-                SalryPrice = 9000,
+                SaleryPrice = 9000,
                 Image = ms.ToArray(),
                 BuyPrice = 6500,
-                Provider = Enter
+                Provider = Enter,
+                Quantity = 3,
+                Frequency=3500
 
             };
 
@@ -98,9 +102,10 @@ namespace DAL
                 RAM = "4X DDR-4",
                 PciE = "1X Pci-E 3.0 X16, 1X Pci-E 3.0 X8",
                 USB = "8X USB 2.0, 2X USB 3.0",
-                SalryPrice = 1500,
+                SaleryPrice = 1500,
                 BuyPrice = 1000,
                 Image = ms.ToArray(),
+                Quantity = 1
             };
 
 

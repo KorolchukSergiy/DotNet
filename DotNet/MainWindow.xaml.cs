@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -22,10 +23,14 @@ namespace DotNet
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        private Brush DefaultBrush;
+        static public bool exit = false; 
         public MainWindow()
         {
             InitializeComponent();
             Progress.Visibility = Visibility.Hidden;
+            DefaultBrush = LogInBox.Background;
+            ShowCloseButton = false;
         }
 
         private void RegNewProvider_Click(object sender, MouseButtonEventArgs e)
@@ -59,6 +64,13 @@ namespace DotNet
 
         private async void LogIn_Click(object sender, RoutedEventArgs e)
         {
+            //Seller SellerWindow = new Seller();
+            //this.Visibility = Visibility.Hidden;
+            //SellerWindow.ShowDialog();
+            //if (exit)
+            //    Close();
+            //else
+            //    this.Visibility = Visibility.Visible;
             BlockControl();
             string login = LogInBox.Text;
             string password = passwordBox.Password;
@@ -79,9 +91,39 @@ namespace DotNet
 
         private void CheckLogin(BllPost LoginPost)
         {
-           
+            string Position = LoginPost?.Name??string.Empty;
+            switch(Position)
+            {
+                case "Seller":
+                    Seller SellerWindow = new Seller();
+                    this.Visibility = Visibility.Hidden;
+                    SellerWindow.ShowDialog();
+                    
+                    break;
+                case "Manager":
+                    break;
+                case "Director":
+                    break;
+                case "Provider":
+                    break;
+                default:
+                    IncorectLogin();
+                    break;
+            }
+            if (exit)
+                Close();
+            else
+                this.Visibility = Visibility.Visible;
         }
-
+        private async void IncorectLogin()
+        {
+            passwordBox.Password = string.Empty;
+            LogInBox.Background = Brushes.Red;
+            passwordBox.Background = Brushes.Red;
+            await Task.Run(() => { Thread.Sleep(1000); });
+            LogInBox.Background = DefaultBrush;
+            passwordBox.Background = DefaultBrush;
+        }
 
 
         private void MetroWindow_KeyDown(object sender, KeyEventArgs e)
