@@ -1,6 +1,6 @@
 ﻿namespace DAL
 {
-    public class MotherBoard
+    public class MotherBoard:Item
     {
         public string Socket { get; set; }
         public string ChipSet { get; set; }
