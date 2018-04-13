@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Drawing;
+//using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,24 +26,93 @@ namespace DotNet
     /// </summary>
     public partial class Seller : MetroWindow
     {
-        ObservableCollection<testclass> list = new ObservableCollection<testclass>();
+        List<BllCpu> mylist;
         public Seller()
         {
             InitializeComponent();
-     
 
-            list.Add( new testclass { Name = "dsaf", Image = new BitmapImage(new Uri( @"I7700.jpg",UriKind.RelativeOrAbsolute))});
-            //CpusDataGrid.ItemsSource = list;
-          
             ShowCloseButton = false;
             Logic blllogic = new Logic();
-            List<BllCpu> mylist = blllogic.GetListBllCpu();
+            mylist = blllogic.GetListBllCpu();
+
+            AddBoxInCpuProducerTree();
+            AddBoxInCpuCoreTree();
+            AddBoxInCpuSocketTree();
+            AddBoxInCpuVideoTree();
+
             CpusDataGrid.ItemsSource = mylist;
+        }
+
+        private void AddBoxInCpuProducerTree()
+        {
+            foreach (var item in mylist.Select(x => x.Producer).Distinct().ToList())
+            {
+                CheckBox TmpCheckBox = new CheckBox
+                {
+                    Content = item,
+                    Background = Brushes.Transparent,
+                    Foreground = Brushes.GreenYellow,
+                    IsChecked = true
+                };
+                TmpCheckBox.Checked += CheckCpu;
+                TmpCheckBox.Unchecked += CheckCpu;
+                CpuProducerTree.Items.Add(TmpCheckBox);
+            }
+        }
+
+        private void AddBoxInCpuCoreTree()
+        {
+            foreach (var item in mylist.Select(x => x.Core).Distinct().ToList())
+            {
+                CheckBox TmpCheckBox = new CheckBox
+                {
+                    Content = item,
+                    Background = Brushes.Transparent,
+                    Foreground = Brushes.GreenYellow,
+                    IsChecked = true
+                };
+                TmpCheckBox.Checked += CheckCpu;
+                TmpCheckBox.Unchecked += CheckCpu;
+                CpuCoreTree.Items.Add(TmpCheckBox);
+            }
+        }
+
+        private void AddBoxInCpuSocketTree()
+        {
+            foreach (var item in mylist.Select(x => x.Socket).Distinct().ToList())
+            {
+                CheckBox TmpCheckBox = new CheckBox
+                {
+                    Content = item,
+                    Background = Brushes.Transparent,
+                    Foreground = Brushes.GreenYellow,
+                    IsChecked = true
+                };
+                TmpCheckBox.Checked += CheckCpu;
+                TmpCheckBox.Unchecked += CheckCpu;
+                CpuSocketTree.Items.Add(TmpCheckBox);
+            }
+        }
+
+        private void AddBoxInCpuVideoTree()
+        {
+            foreach (var item in mylist.Select(x => x.Video).Distinct().ToList())
+            {
+                CheckBox TmpCheckBox = new CheckBox
+                {
+                    Content = item,
+                    Background = Brushes.Transparent,
+                    Foreground = Brushes.GreenYellow,
+                    IsChecked = true
+                };
+                TmpCheckBox.Checked += CheckCpu;
+                TmpCheckBox.Unchecked += CheckCpu;
+                CpuVideoTree.Items.Add(TmpCheckBox);
+            }
         }
 
         private void LogOut(object sender, RoutedEventArgs e)
         {
-           
             Close();
         }
 
@@ -51,6 +120,54 @@ namespace DotNet
         {
             MainWindow.exit = true;
             Close();
+        }
+
+        private void CheckCpu(object sender, RoutedEventArgs e)
+        {
+
+            string producer = string.Empty;
+            string core = string.Empty;
+            string socket = string.Empty;
+            string video = string.Empty;
+
+            foreach (var item in CpuProducerTree.Items)
+            {
+                if ((item as CheckBox).IsChecked == true)
+                {
+                    producer += (item as CheckBox).Content;
+                }
+            }
+
+            foreach (var item in CpuCoreTree.Items)
+            {
+                if ((item as CheckBox).IsChecked == true)
+                {
+                    core += (item as CheckBox).Content;
+                }
+            }
+
+            foreach (var item in CpuSocketTree.Items)
+            {
+                if ((item as CheckBox).IsChecked == true)
+                {
+                    socket += (item as CheckBox).Content;
+                }
+            }
+
+            foreach (var item in CpuVideoTree.Items)
+            {
+                if ((item as CheckBox).IsChecked == true)
+                {
+                    video += (item as CheckBox).Content;
+                }
+            }
+
+            List<BllCpu> BindingCpu = mylist.Where(x =>
+                                      core.IndexOf(x.Core.ToString()) >= 0
+                                      && producer.IndexOf(x.Producer) >= 0
+                                      && socket.IndexOf(x.Socket)>=0
+                                      && video.IndexOf(x.Video)>=0).ToList();
+            CpusDataGrid.ItemsSource = BindingCpu;
         }
     }
 }

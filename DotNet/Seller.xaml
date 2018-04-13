@@ -43,41 +43,70 @@
         <TabControl Grid.Row="2" Background="Transparent" Margin="5">
 
             <TabItem Header="CPU"  Background="Transparent">
-                <DataGrid Grid.Row="2" x:Name="CpusDataGrid" AutoGenerateColumns="False" Margin="5"
-                          Grid.RowSpan="2" Background="Transparent" RowBackground="Transparent"
-                          Foreground="GreenYellow" IsReadOnly="True">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Name}"  ></DataGridTextColumn>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
 
-                        <DataGridTextColumn Header="Producer" Binding="{Binding Producer}"  ></DataGridTextColumn>
-
-                        <DataGridTextColumn Header="Socket" Binding="{Binding Socket}"  ></DataGridTextColumn>
-
-                        <DataGridTextColumn Header="Frequency" Binding="{Binding Frequency}"></DataGridTextColumn>
-
-                        <DataGridTextColumn Header="Core" Binding="{Binding Core}"  ></DataGridTextColumn>
-
-                        <DataGridTextColumn Header="Threads" Binding="{Binding Threads}"  ></DataGridTextColumn>
-
-                        <DataGridTextColumn Header="Cash" Binding="{Binding Cash}"  ></DataGridTextColumn>
-
-                        <DataGridTextColumn Header="Video" Binding="{Binding Video}"  ></DataGridTextColumn>
-
-                        <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"  ></DataGridTextColumn>
+                    <TreeView Background="Transparent" Margin="5" Foreground="GreenYellow">
+                        <TreeViewItem Header="Producer" Background="Transparent"
+                                      Foreground="GreenYellow" x:Name="CpuProducerTree"
+                                      IsExpanded="True">
+                        </TreeViewItem>
                         
-                        <DataGridTextColumn Header="Price" Binding="{Binding SalaryPrice}"  ></DataGridTextColumn>
+                        <TreeViewItem Header="Socket" Background="Transparent"
+                                      Foreground="GreenYellow" x:Name="CpuSocketTree"
+                                      IsExpanded="True">
+                        </TreeViewItem>
 
-                        <DataGridTemplateColumn Header="Picture" Width="75" >
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Image Height="75" Width="75" Source="{Binding Image}"></Image>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+                        <TreeViewItem Header="Core" Background="Transparent"
+                                      Foreground="GreenYellow" x:Name="CpuCoreTree"
+                                      IsExpanded="True">
+                        </TreeViewItem>
+
+                        <TreeViewItem Header="Video" Background="Transparent"
+                                      Foreground="GreenYellow" x:Name="CpuVideoTree"
+                                      IsExpanded="True">
+                        </TreeViewItem>
+
+                    </TreeView>
+
+                    <DataGrid x:Name="CpusDataGrid" AutoGenerateColumns="False" Margin="5" Background="Transparent" RowBackground="#99C0C0C0"
+                          Foreground="GreenYellow" IsReadOnly="True" Grid.Column="1">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"  ></DataGridTextColumn>
+
+                            <DataGridTextColumn Header="Producer" Binding="{Binding Producer}"  ></DataGridTextColumn>
+
+                            <DataGridTextColumn Header="Socket" Binding="{Binding Socket}"  ></DataGridTextColumn>
+
+                            <DataGridTextColumn Header="Frequency" Binding="{Binding Frequency}"></DataGridTextColumn>
+
+                            <DataGridTextColumn Header="Core" Binding="{Binding Core}"  ></DataGridTextColumn>
+
+                            <DataGridTextColumn Header="Threads" Binding="{Binding Threads}"  ></DataGridTextColumn>
+
+                            <DataGridTextColumn Header="Cash" Binding="{Binding Cash}"  ></DataGridTextColumn>
+
+                            <DataGridTextColumn Header="Video" Binding="{Binding Video}"  ></DataGridTextColumn>
+
+                            <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"  ></DataGridTextColumn>
+
+                            <DataGridTextColumn Header="Price" Binding="{Binding SalaryPrice}"  ></DataGridTextColumn>
+
+                            <DataGridTemplateColumn Header="Picture" Width="75" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Height="75" Width="75" Source="{Binding Image}"></Image>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
 
 
-                    </DataGrid.Columns>
-                </DataGrid>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
             </TabItem>
 
         </TabControl>
@@ -105,8 +134,8 @@
                     <DataGridTextColumn Header="Price" Binding="{Binding SaleryPrice}"  ></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Grid.Column="1" Foreground="GreenYellow" Background="#CCB4B4B4" Margin="5">Delete </Button>
-            <Button Grid.Column="1" Grid.Row="1" Foreground="GreenYellow" Background="#CCB4B4B4" Margin="5">Clear </Button>
+            <Button Grid.Column="1" Foreground="GreenYellow" Background="#CCB4B4B4" Margin="5">Delete</Button>
+            <Button Grid.Column="1" Grid.Row="1" Foreground="GreenYellow" Background="#CCB4B4B4" Margin="5">Clear</Button>
             <Button Grid.Column="1" Grid.Row="2" Foreground="GreenYellow" Background="#CCB4B4B4" Margin="5">Print</Button>
         </Grid>
     </Grid>
