@@ -7,8 +7,8 @@ using System.IO;
 using System.Drawing;
 using DAL;
 using BLL.conversion;
-
-
+using BLL.DataModel;
+using System.Windows;
 
 namespace BLL
 {
@@ -29,6 +29,14 @@ namespace BLL
             }
             
             return GetBLLPOST;
+        }
+        public List<BllCpu> GetListBllCpu()
+        {
+            List<BllCpu> GetList = new List<BllCpu>();
+            Function function = new Function();
+            List<CPU> TmpListCpu= function.GetListCpu();
+            MessageBox.Show(TmpListCpu[0].Producer.Name);
+            return GetList;
         }
     }
 }

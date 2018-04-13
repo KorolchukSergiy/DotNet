@@ -64,29 +64,29 @@ namespace DotNet
 
         private async void LogIn_Click(object sender, RoutedEventArgs e)
         {
-            //Seller SellerWindow = new Seller();
-            //this.Visibility = Visibility.Hidden;
-            //SellerWindow.ShowDialog();
-            //if (exit)
-            //    Close();
-            //else
-            //    this.Visibility = Visibility.Visible;
-            BlockControl();
-            string login = LogInBox.Text;
-            string password = passwordBox.Password;
-            Progress.Visibility = Visibility.Visible;
-            BllPost LoginPost = await Task.Run(() =>
-              {
-                  Logic BllLogic = new Logic();
-                  return BllLogic.GetPostLogin(login, password);
-              });
-            CheckLogin(LoginPost);
-            Progress.Visibility = Visibility.Hidden;
-            if(LoginPost!=null)
-            {
-                MessageBox.Show(LoginPost.Name);
-            }
-            UnBlockControl();
+            Seller SellerWindow = new Seller();
+            this.Visibility = Visibility.Hidden;
+            SellerWindow.ShowDialog();
+            if (exit)
+                Close();
+            else
+                this.Visibility = Visibility.Visible;
+            //BlockControl();
+            //string login = LogInBox.Text;
+            //string password = passwordBox.Password;
+            //Progress.Visibility = Visibility.Visible;
+            //BllPost LoginPost = await Task.Run(() =>
+            //  {
+            //      Logic BllLogic = new Logic();
+            //      return BllLogic.GetPostLogin(login, password);
+            //  });
+            //CheckLogin(LoginPost);
+            //Progress.Visibility = Visibility.Hidden;
+            //if(LoginPost!=null)
+            //{
+            //    MessageBox.Show(LoginPost.Name);
+            //}
+            //UnBlockControl();
         }
 
         private void CheckLogin(BllPost LoginPost)

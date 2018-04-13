@@ -31,7 +31,7 @@ namespace DAL
                 GetListPost = shop.Posts.Local.ToList();
             };
             return GetListPost;
-            
+
         }
 
         public Post GetPostUser(User user)
@@ -40,10 +40,23 @@ namespace DAL
 
             using (Shop shop = new Shop())
             {
-                User tmpUser= shop.Users.Where(x => x.Id == user.Id).First();
+                User tmpUser = shop.Users.Where(x => x.Id == user.Id).First();
                 UserLoginPost = tmpUser.Post;
             };
             return UserLoginPost;
+        }
+
+        public List<CPU> GetListCpu()
+        {
+            List<CPU> GetList = new List<CPU>();
+            var ttt = new Dictionary<CPU, string>();
+            using (Shop shop = new Shop())
+            {
+                ttt= shop.CPUs.Select(x => new { x, x.Producer.Name }).ToDictionary(t => t.x,t=>t.Name);
+
+            };
+
+            return GetList;
         }
     }
 }

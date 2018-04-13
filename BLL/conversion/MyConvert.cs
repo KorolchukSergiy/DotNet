@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
+using BLL.DataModel;
 namespace BLL.conversion
 {
     public class MyConvert
@@ -31,6 +32,18 @@ namespace BLL.conversion
                 Salary = post.Salary,
             };
             return GetBllPost;
+        }
+
+        static public BllCpu CpuToBllCpu(CPU Cpu)
+        {
+            BllCpu GetBllCpu = new BllCpu
+            {
+                Id = Cpu.Id,
+                Name = Cpu.Name,
+                Producer = Cpu.Producer.Name
+            };
+
+            return GetBllCpu;
         }
     }
 }

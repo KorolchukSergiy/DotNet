@@ -17,6 +17,7 @@ using System.IO;
 using System.Data.Entity;
 using BLL;
 using System.Collections.ObjectModel;
+using BLL.DataModel;
 
 namespace DotNet
 {
@@ -31,10 +32,12 @@ namespace DotNet
             InitializeComponent();
      
 
-            list.Add( new testclass { Name = "dsaf", Image = new BitmapImage(new Uri( @"I7700.jpg",UriKind.RelativeOrAbsolute))});
-            CpusDataGrid.ItemsSource = list;
+            //list.Add( new testclass { Name = "dsaf", Image = new BitmapImage(new Uri( @"I7700.jpg",UriKind.RelativeOrAbsolute))});
+            //CpusDataGrid.ItemsSource = list;
           
             ShowCloseButton = false;
+            Logic blllogic = new Logic();
+            List<BllCpu> mylist = blllogic.GetListBllCpu();
         }
 
         private void LogOut(object sender, RoutedEventArgs e)
