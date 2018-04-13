@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL;
 using BLL.DataModel;
+using System.Windows.Media.Imaging;
+using System.IO;
+
 namespace BLL.conversion
 {
     public class MyConvert
@@ -34,16 +37,39 @@ namespace BLL.conversion
             return GetBllPost;
         }
 
-        static public BllCpu CpuToBllCpu(CPU Cpu)
+        static public BllCpu CpuToBllCpu(CPU Cpu,string Producer)
         {
             BllCpu GetBllCpu = new BllCpu
             {
                 Id = Cpu.Id,
                 Name = Cpu.Name,
-                Producer = Cpu.Producer.Name
+                Producer = Producer,
+                Quantity=Cpu.Quantity,
+                SalaryPrice=Cpu.SalaryPrice,
+                BuyPrice=Cpu.BuyPrice,
+                Cash=Cpu.Cash,
+                Core=Cpu.Core,
+                Threads=Cpu.Threads,
+                Frequency=Cpu.Frequency,
+                Image= DyteArrayToBitmapImage(Cpu.Image),
+                Socket =Cpu.Socket,
+                Video=Cpu.Video
             };
 
             return GetBllCpu;
+        }
+
+        static public BitmapImage DyteArrayToBitmapImage(byte[] image)
+        {
+            BitmapImage getimage = new BitmapImage();
+            using (var ms = new MemoryStream(image))
+            {
+                getimage.BeginInit();
+                getimage.CacheOption = BitmapCacheOption.OnLoad;
+                getimage.StreamSource = ms;
+                getimage.EndInit();
+            }
+                return getimage;
         }
     }
 }

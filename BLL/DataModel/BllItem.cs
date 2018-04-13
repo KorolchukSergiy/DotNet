@@ -8,6 +8,8 @@ using System.ComponentModel;
 using System.IO;
 using System.Net.Cache;
 using System.Windows.Markup;
+using System.Windows.Media.Imaging;
+
 
 namespace BLL.DataModel
 {
@@ -20,6 +22,7 @@ namespace BLL.DataModel
         public string Provider { get; set; }
         public decimal BuyPrice { get; set; }
         public decimal SalaryPrice { get; set; }
-        public byte[] Image { get; set; }
+        public BitmapImage Image { get; set; }
+        
     }
 }

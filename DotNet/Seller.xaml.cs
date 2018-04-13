@@ -32,12 +32,13 @@ namespace DotNet
             InitializeComponent();
      
 
-            //list.Add( new testclass { Name = "dsaf", Image = new BitmapImage(new Uri( @"I7700.jpg",UriKind.RelativeOrAbsolute))});
+            list.Add( new testclass { Name = "dsaf", Image = new BitmapImage(new Uri( @"I7700.jpg",UriKind.RelativeOrAbsolute))});
             //CpusDataGrid.ItemsSource = list;
           
             ShowCloseButton = false;
             Logic blllogic = new Logic();
             List<BllCpu> mylist = blllogic.GetListBllCpu();
+            CpusDataGrid.ItemsSource = mylist;
         }
 
         private void LogOut(object sender, RoutedEventArgs e)

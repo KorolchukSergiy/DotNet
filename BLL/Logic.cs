@@ -34,8 +34,8 @@ namespace BLL
         {
             List<BllCpu> GetList = new List<BllCpu>();
             Function function = new Function();
-            List<CPU> TmpListCpu= function.GetListCpu();
-            MessageBox.Show(TmpListCpu[0].Producer.Name);
+            var TmpListCpu= function.GetListCpu();
+            GetList=TmpListCpu.Select(x => MyConvert.CpuToBllCpu(x.Key, x.Value)).ToList();
             return GetList;
         }
     }

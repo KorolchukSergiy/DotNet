@@ -65,7 +65,7 @@
 
                         <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"  ></DataGridTextColumn>
                         
-                        <DataGridTextColumn Header="Price" Binding="{Binding SaleryPrice}"  ></DataGridTextColumn>
+                        <DataGridTextColumn Header="Price" Binding="{Binding SalaryPrice}"  ></DataGridTextColumn>
 
                         <DataGridTemplateColumn Header="Picture" Width="75" >
                             <DataGridTemplateColumn.CellTemplate>
