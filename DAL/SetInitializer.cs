@@ -13,21 +13,21 @@ namespace DAL
             Producer Intel = new Producer
             {
                 Name = "Intel",
-                CPUs = new List<CPU>(),
-                MotherBoards = new List<MotherBoard>()
+                CPUs = new List<CpuFromProvider>(),
+                MotherBoards = new List<MotherBoardFromProvider>()
 
             };
             Producer AMD = new Producer
             {
                 Name = "AMD",
-                CPUs = new List<CPU>(),
-                MotherBoards = new List<MotherBoard>()
+                CPUs = new List<CpuFromProvider>(),
+                MotherBoards = new List<MotherBoardFromProvider>()
             };
             Producer MSI = new Producer
             {
                 Name = "MSI",
-                CPUs = new List<CPU>(),
-                MotherBoards = new List<MotherBoard>()
+                CPUs = new List<CpuFromProvider>(),
+                MotherBoards = new List<MotherBoardFromProvider>()
             };
 
             Provider KTC = new Provider
@@ -49,7 +49,7 @@ namespace DAL
             Image img = Image.FromFile(@"I7700.jpg");
             img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
 
-            CPU I7700 = new CPU
+            CpuFromProvider I7700 = new CpuFromProvider
             {
                 Name = "I7700",
                 Producer = Intel,
@@ -70,7 +70,7 @@ namespace DAL
             img = Image.FromFile(@"Ryzen 7 1800X.jpg");
             img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
 
-            CPU Ryzen71800X = new CPU
+            CpuFromProvider Ryzen71800X = new CpuFromProvider
             {
                 Name = "Ryzen 7 1800X",
                 Producer = AMD,
@@ -87,12 +87,12 @@ namespace DAL
                 Frequency=3500
 
             };
-
+            
             ms = new MemoryStream();
             img = Image.FromFile(@"H110MPRO.jpg");
             img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-
-            MotherBoard H110MProD = new MotherBoard
+          
+            MotherBoardFromProvider H110MProD = new MotherBoardFromProvider
             {
                 Name = "H110M Pro-D",
                 Producer = MSI,
@@ -108,8 +108,8 @@ namespace DAL
                 Quantity = 1
             };
 
-
-            context.CPUs.AddRange(new List<CPU> { I7700, Ryzen71800X });
+            context.MotherBoardes.Add(H110MProD);
+            context.CPUs.AddRange(new List<CpuFromProvider> { I7700, Ryzen71800X });
             context.Producers.AddRange(new List<Producer> { Intel, AMD, MSI });
             context.Providers.AddRange(new List<Provider> { KTC, Enter, I5 });
             context.SaveChanges();

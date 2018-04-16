@@ -1,6 +1,12 @@
-﻿namespace DAL
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DAL
 {
-    public class CPU:Item
+    public class CpuFromShop : ItemFromShop
     {
         public string Socket { get; set; }
         public int Frequency { get; set; }

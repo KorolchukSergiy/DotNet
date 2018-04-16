@@ -1,6 +1,12 @@
-﻿namespace DAL
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DAL
 {
-    public class MotherBoard:Item
+    public class MotherBoardFromShop : ItemFromShop
     {
         public string Socket { get; set; }
         public string ChipSet { get; set; }

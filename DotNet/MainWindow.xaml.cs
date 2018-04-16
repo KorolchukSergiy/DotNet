@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BLL;
 using MahApps.Metro.Controls;
+using System.Windows.Threading;
 
 namespace DotNet
 {
@@ -24,7 +25,7 @@ namespace DotNet
     public partial class MainWindow : MetroWindow
     {
         private Brush DefaultBrush;
-        static public bool exit = false; 
+        static public bool exit = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -50,7 +51,7 @@ namespace DotNet
             LogInBox.IsEnabled = false;
             passwordBox.IsEnabled = false;
             RegNewProvider.IsEnabled = false;
-           
+
         }
 
         private void UnBlockControl()
@@ -71,34 +72,34 @@ namespace DotNet
                 Close();
             else
                 this.Visibility = Visibility.Visible;
-            //BlockControl();
-            //string login = LogInBox.Text;
-            //string password = passwordBox.Password;
-            //Progress.Visibility = Visibility.Visible;
-            //BllPost LoginPost = await Task.Run(() =>
-            //  {
-            //      Logic BllLogic = new Logic();
-            //      return BllLogic.GetPostLogin(login, password);
-            //  });
-            //CheckLogin(LoginPost);
-            //Progress.Visibility = Visibility.Hidden;
-            //if(LoginPost!=null)
-            //{
-            //    MessageBox.Show(LoginPost.Name);
-            //}
-            //UnBlockControl();
+            BlockControl();
+            string login = LogInBox.Text;
+            string password = passwordBox.Password;
+            Progress.Visibility = Visibility.Visible;
+            BllPost LoginPost = await Task.Run(() =>
+              {
+                  Logic BllLogic = new Logic();
+                  return BllLogic.GetPostLogin(login, password);
+              });
+            CheckLogin(LoginPost);
+            Progress.Visibility = Visibility.Hidden;
+            if (LoginPost != null)
+            {
+                MessageBox.Show(LoginPost.Name);
+            }
+            UnBlockControl();
         }
 
         private void CheckLogin(BllPost LoginPost)
         {
-            string Position = LoginPost?.Name??string.Empty;
-            switch(Position)
+            string Position = LoginPost?.Name ?? string.Empty;
+            switch (Position)
             {
                 case "Seller":
                     Seller SellerWindow = new Seller();
                     this.Visibility = Visibility.Hidden;
                     SellerWindow.ShowDialog();
-                    
+
                     break;
                 case "Manager":
                     break;
@@ -128,7 +129,7 @@ namespace DotNet
 
         private void MetroWindow_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key==Key.Enter)
+            if (e.Key == Key.Enter)
             {
                 LogIn_Click(null, null);
             }

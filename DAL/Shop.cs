@@ -17,11 +17,13 @@
 
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
-        public virtual DbSet<MotherBoard> MotherBoardes { get; set; }
-        public virtual DbSet<CPU> CPUs { get; set; }
+        public virtual DbSet<ItemFromProvider> Items { get; set; }
+        public virtual DbSet<ItemFromShop> ItemFromShops { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<Producer> Producers { get; set; }
         public virtual DbSet<Provider> Providers { get; set; }
+        public virtual DbSet<SaleItem> SaleItems { get; set; }
+        public virtual DbSet<BuyItem> BuyItems { get; set; }
     }
 
 }

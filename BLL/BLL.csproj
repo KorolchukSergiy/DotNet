@@ -46,6 +46,7 @@
     <Compile Include="conversion\MyConvert.cs" />
     <Compile Include="DataModel\BllCpu.cs" />
     <Compile Include="DataModel\BllItem.cs" />
+    <Compile Include="DataModel\BllMotherBoard.cs" />
     <Compile Include="DataModel\BLLPOST.cs" />
     <Compile Include="DataModel\BLLUSER.cs" />
     <Compile Include="Logic.cs" />

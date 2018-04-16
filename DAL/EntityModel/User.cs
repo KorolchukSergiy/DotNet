@@ -10,6 +10,7 @@ namespace DAL
         public string Login { get; set; }
         public string Password { get; set; }
         public virtual Post Post { get; set; }
+        public bool Online { get; set; }
         public virtual ICollection<Log> Logs { get; set; }
     }
 }

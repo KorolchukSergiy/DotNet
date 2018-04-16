@@ -37,7 +37,7 @@ namespace BLL.conversion
             return GetBllPost;
         }
 
-        static public BllCpu CpuToBllCpu(CPU Cpu,string Producer)
+        static public BllCpu CpuToBllCpu(CpuFromProvider Cpu,string Producer)
         {
             BllCpu GetBllCpu = new BllCpu
             {

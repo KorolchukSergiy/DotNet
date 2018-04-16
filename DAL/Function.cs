@@ -46,14 +46,12 @@ namespace DAL
             return UserLoginPost;
         }
 
-        public Dictionary<CPU, string> GetListCpu()
+        public Dictionary<CpuFromProvider, string> GetListCpu()
         {
-           // List<CPU> GetList = new List<CPU>();
-            var GetList = new Dictionary<CPU, string>();
+            var GetList = new Dictionary<CpuFromProvider, string>();
             using (Shop shop = new Shop())
             {
                 GetList = shop.CPUs.Select(x => new { x, x.Producer.Name }).ToDictionary(t => t.x,t=>t.Name);
-
             };
 
             return GetList;

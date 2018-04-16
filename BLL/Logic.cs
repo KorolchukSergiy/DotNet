@@ -10,6 +10,7 @@ using BLL.conversion;
 using BLL.DataModel;
 using System.Windows;
 
+
 namespace BLL
 {
     public class Logic
@@ -19,7 +20,7 @@ namespace BLL
             BllPost GetBLLPOST = null;
             Function function = new Function();
             User TestUser = function.GetUser(login, password);
-            if (TestUser!=null)
+            if (TestUser != null)
             {
                 if (TestUser.Login == login && TestUser.Password == password)
                 {
@@ -27,15 +28,18 @@ namespace BLL
                     GetBLLPOST = MyConvert.PostToBllPost(post);
                 }
             }
-            
+
             return GetBLLPOST;
         }
         public List<BllCpu> GetListBllCpu()
         {
+
+
+
             List<BllCpu> GetList = new List<BllCpu>();
             Function function = new Function();
-            var TmpListCpu= function.GetListCpu();
-            GetList=TmpListCpu.Select(x => MyConvert.CpuToBllCpu(x.Key, x.Value)).ToList();
+            var TmpListCpu = function.GetListCpu();
+            GetList = TmpListCpu.Select(x => MyConvert.CpuToBllCpu(x.Key, x.Value)).ToList();
             return GetList;
         }
     }

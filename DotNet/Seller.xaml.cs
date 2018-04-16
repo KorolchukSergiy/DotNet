@@ -26,26 +26,33 @@ namespace DotNet
     /// </summary>
     public partial class Seller : MetroWindow
     {
-        List<BllCpu> mylist;
+        List<BllCpu> ListBllCpu;
+        List<BllMotherBoard> ListBllMotherBoard;
         public Seller()
         {
             InitializeComponent();
 
-            ShowCloseButton = false;
+            ShowCloseButton = false;          
+        }
+
+        private void SellerWindoowLoaded(object sender, RoutedEventArgs e)
+        {
             Logic blllogic = new Logic();
-            mylist = blllogic.GetListBllCpu();
+            ListBllCpu = blllogic.GetListBllCpu();
 
             AddBoxInCpuProducerTree();
             AddBoxInCpuCoreTree();
             AddBoxInCpuSocketTree();
             AddBoxInCpuVideoTree();
+            CpusDataGrid.ItemsSource = ListBllCpu;
+            
 
-            CpusDataGrid.ItemsSource = mylist;
         }
 
         private void AddBoxInCpuProducerTree()
         {
-            foreach (var item in mylist.Select(x => x.Producer).Distinct().ToList())
+           
+            foreach (var item in ListBllCpu.Select(x => x.Producer).Distinct().ToList())
             {
                 CheckBox TmpCheckBox = new CheckBox
                 {
@@ -62,7 +69,7 @@ namespace DotNet
 
         private void AddBoxInCpuCoreTree()
         {
-            foreach (var item in mylist.Select(x => x.Core).Distinct().ToList())
+            foreach (var item in ListBllCpu.Select(x => x.Core).Distinct().ToList())
             {
                 CheckBox TmpCheckBox = new CheckBox
                 {
@@ -79,7 +86,7 @@ namespace DotNet
 
         private void AddBoxInCpuSocketTree()
         {
-            foreach (var item in mylist.Select(x => x.Socket).Distinct().ToList())
+            foreach (var item in ListBllCpu.Select(x => x.Socket).Distinct().ToList())
             {
                 CheckBox TmpCheckBox = new CheckBox
                 {
@@ -96,7 +103,7 @@ namespace DotNet
 
         private void AddBoxInCpuVideoTree()
         {
-            foreach (var item in mylist.Select(x => x.Video).Distinct().ToList())
+            foreach (var item in ListBllCpu.Select(x => x.Video).Distinct().ToList())
             {
                 CheckBox TmpCheckBox = new CheckBox
                 {
@@ -109,6 +116,11 @@ namespace DotNet
                 TmpCheckBox.Unchecked += CheckCpu;
                 CpuVideoTree.Items.Add(TmpCheckBox);
             }
+        }
+
+        private void AddBoxInMotherBProducerTree()
+        {
+
         }
 
         private void LogOut(object sender, RoutedEventArgs e)
@@ -162,7 +174,7 @@ namespace DotNet
                 }
             }
 
-            List<BllCpu> BindingCpu = mylist.Where(x =>
+            List<BllCpu> BindingCpu = ListBllCpu.Where(x =>
                                       core.IndexOf(x.Core.ToString()) >= 0
                                       && producer.IndexOf(x.Producer) >= 0
                                       && socket.IndexOf(x.Socket)>=0
