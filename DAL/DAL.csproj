@@ -53,6 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuyItem.cs" />
+    <Compile Include="Conversion\DalConvert.cs" />
+    <Compile Include="DTODal\DalCpuFromShop.cs" />
+    <Compile Include="DTODal\DalItemFromShop.cs" />
+    <Compile Include="DTODal\DalMotherBoardFromShop.cs" />
+    <Compile Include="DTODal\DalPost.cs" />
+    <Compile Include="DTODal\User.cs" />
     <Compile Include="EntityModel\CpuFromShop.cs" />
     <Compile Include="EntityModel\CpuFromProvider.cs" />
     <Compile Include="EntityModel\ItemFromProvider.cs" />

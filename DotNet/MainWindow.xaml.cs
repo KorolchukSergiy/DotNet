@@ -65,13 +65,13 @@ namespace DotNet
 
         private async void LogIn_Click(object sender, RoutedEventArgs e)
         {
-            Seller SellerWindow = new Seller();
-            this.Visibility = Visibility.Hidden;
-            SellerWindow.ShowDialog();
-            if (exit)
-                Close();
-            else
-                this.Visibility = Visibility.Visible;
+            //Seller SellerWindow = new Seller();
+            //this.Visibility = Visibility.Hidden;
+            //SellerWindow.ShowDialog();
+            //if (exit)
+            //    Close();
+            //else
+            //    this.Visibility = Visibility.Visible;
             BlockControl();
             string login = LogInBox.Text;
             string password = passwordBox.Password;

@@ -9,7 +9,7 @@ using DAL;
 using BLL.conversion;
 using BLL.DataModel;
 using System.Windows;
-
+using DAL.DTODal;
 
 namespace BLL
 {
@@ -19,12 +19,12 @@ namespace BLL
         {
             BllPost GetBLLPOST = null;
             Function function = new Function();
-            User TestUser = function.GetUser(login, password);
+            DalUser TestUser = function.GetUser(login, password);
             if (TestUser != null)
             {
                 if (TestUser.Login == login && TestUser.Password == password)
                 {
-                    Post post = function.GetPostUser(TestUser);
+                    DalPost post = function.GetPostUser(TestUser);
                     GetBLLPOST = MyConvert.PostToBllPost(post);
                 }
             }
@@ -33,13 +33,11 @@ namespace BLL
         }
         public List<BllCpu> GetListBllCpu()
         {
-
-
-
             List<BllCpu> GetList = new List<BllCpu>();
             Function function = new Function();
             var TmpListCpu = function.GetListCpu();
-            GetList = TmpListCpu.Select(x => MyConvert.CpuToBllCpu(x.Key, x.Value)).ToList();
+            GetList = TmpListCpu.Select(x => MyConvert.CpuToBllCpu(x)).ToList();
+            MessageBox.Show(GetList.Count.ToString());
             return GetList;
         }
     }

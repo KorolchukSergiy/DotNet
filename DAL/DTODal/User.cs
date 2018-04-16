@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL
+namespace DAL.DTODal
 {
-    public class BllUser
+    public class DalUser
     {
         public int Id { get; set; }
         public string Name { get; set; }

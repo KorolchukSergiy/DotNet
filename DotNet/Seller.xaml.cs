@@ -31,7 +31,7 @@ namespace DotNet
         public Seller()
         {
             InitializeComponent();
-
+            //SellerWindoowLoaded(null, null);
             ShowCloseButton = false;          
         }
 

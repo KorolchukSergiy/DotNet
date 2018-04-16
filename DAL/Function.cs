@@ -6,19 +6,26 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.IO;
 using System.Drawing;
+using DAL.DTODal;
+using DAL.Conversion;
 
 namespace DAL
 {
     public class Function
     {
-        public User GetUser(string login, string password)
+        public DalUser GetUser(string login, string password)
         {
-            User GetUser = null;
+            DalUser GetUser = null;
             using (Shop shop = new Shop())
             {
-                GetUser = shop.Users.Where(x => x.Login.Equals(login)
-                                           && x.Password.Equals(password)).
+                User tmpuser = shop.Users.Where(x => x.Login.Equals(login)
+                                             && x.Password.Equals(password)).
                                            FirstOrDefault();
+                if(tmpuser != null)
+                {
+                    GetUser = DalConvert.UserToDTODalUser(tmpuser);
+                }
+              
             };
             return GetUser;
         }
@@ -34,24 +41,25 @@ namespace DAL
 
         }
 
-        public Post GetPostUser(User user)
+        public DalPost GetPostUser(DalUser user)
         {
-            Post UserLoginPost = null;
+            DalPost UserLoginPost = null;
 
             using (Shop shop = new Shop())
             {
                 User tmpUser = shop.Users.Where(x => x.Id == user.Id).First();
-                UserLoginPost = tmpUser.Post;
+                UserLoginPost = DalConvert.PostToDalPost(tmpUser.Post);
             };
             return UserLoginPost;
         }
 
-        public Dictionary<CpuFromProvider, string> GetListCpu()
+        public List<DalCpuFromShop> GetListCpu()
         {
-            var GetList = new Dictionary<CpuFromProvider, string>();
+            var GetList = new List<DalCpuFromShop>();
             using (Shop shop = new Shop())
             {
-                GetList = shop.CPUs.Select(x => new { x, x.Producer.Name }).ToDictionary(t => t.x,t=>t.Name);
+                var tmplist= shop.ItemFromShops.Where(x =>  x is CpuFromShop).Select(x=> (x as CpuFromShop )).ToList();
+                GetList = tmplist.Select(x => DalConvert.CpuToDTODalCpuShop(x)).ToList();
             };
 
             return GetList;

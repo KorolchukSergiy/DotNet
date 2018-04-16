@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BLL;
 using BLL.DataModel;
+
 namespace DotNet
 {
     /// <summary>
@@ -24,6 +25,17 @@ namespace DotNet
         public Manager()
         {
             InitializeComponent();
+        }
+
+        private void LogOut(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            MainWindow.exit = true;
+            Close();
         }
     }
 }

@@ -60,7 +60,6 @@ namespace DAL
                 Cash = "8 Mb",
                 SalaryPrice = 10000,
                 Image = ms.ToArray(),
-                BuyPrice = 7000,
                 Quantity=2,
                 Frequency=3300,
             };
@@ -80,7 +79,6 @@ namespace DAL
                 Cash = "4 Mb",
                 SalaryPrice = 9000,
                 Image = ms.ToArray(),
-                BuyPrice = 6500,
                 Quantity = 3,
                 Frequency=3500
 
@@ -100,7 +98,6 @@ namespace DAL
                 PciE = "1X Pci-E 3.0 X16, 1X Pci-E 3.0 X8",
                 USB = "8X USB 2.0, 2X USB 3.0",
                 SalaryPrice = 1500,
-                BuyPrice = 1000,
                 Image = ms.ToArray(),
                 Quantity = 1
             };
