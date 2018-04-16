@@ -49,7 +49,7 @@ namespace DAL
             Image img = Image.FromFile(@"I7700.jpg");
             img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
 
-            CpuFromProvider I7700 = new CpuFromProvider
+            CpuFromShop I7700 = new CpuFromShop
             {
                 Name = "I7700",
                 Producer = Intel,
@@ -61,7 +61,6 @@ namespace DAL
                 SalaryPrice = 10000,
                 Image = ms.ToArray(),
                 BuyPrice = 7000,
-                Provider = KTC,
                 Quantity=2,
                 Frequency=3300,
             };
@@ -70,7 +69,7 @@ namespace DAL
             img = Image.FromFile(@"Ryzen 7 1800X.jpg");
             img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
 
-            CpuFromProvider Ryzen71800X = new CpuFromProvider
+            CpuFromShop Ryzen71800X = new CpuFromShop
             {
                 Name = "Ryzen 7 1800X",
                 Producer = AMD,
@@ -82,7 +81,6 @@ namespace DAL
                 SalaryPrice = 9000,
                 Image = ms.ToArray(),
                 BuyPrice = 6500,
-                Provider = Enter,
                 Quantity = 3,
                 Frequency=3500
 
@@ -92,11 +90,10 @@ namespace DAL
             img = Image.FromFile(@"H110MPRO.jpg");
             img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
           
-            MotherBoardFromProvider H110MProD = new MotherBoardFromProvider
+            MotherBoardFromShop H110MProD = new MotherBoardFromShop
             {
                 Name = "H110M Pro-D",
                 Producer = MSI,
-                Provider = I5,
                 Socket = "1151",
                 ChipSet = "H110M",
                 RAM = "4X DDR-4",
@@ -108,8 +105,7 @@ namespace DAL
                 Quantity = 1
             };
 
-            context.MotherBoardes.Add(H110MProD);
-            context.CPUs.AddRange(new List<CpuFromProvider> { I7700, Ryzen71800X });
+            context.ItemFromShops.AddRange(new List<ItemFromShop> { I7700, Ryzen71800X, H110MProD });
             context.Producers.AddRange(new List<Producer> { Intel, AMD, MSI });
             context.Providers.AddRange(new List<Provider> { KTC, Enter, I5 });
             context.SaveChanges();
@@ -149,7 +145,8 @@ namespace DAL
                 Surname ="Ruduk",
                 Login= "Ruduk",
                 Password= "Ruduk",
-                Post = Worker
+                Post = Worker,
+                Online = false
             };
 
             User UserManager = new User
@@ -158,7 +155,8 @@ namespace DAL
                 Surname = "Podik",
                 Login = "Podik",
                 Password = "Podik",
-                Post = Manager
+                Post = Manager,
+                Online=false
             };
             User UserDirector = new User
             {
@@ -166,7 +164,8 @@ namespace DAL
                 Surname = "Korolchuk",
                 Login = "Korolchuk",
                 Password = "Korolchuk",
-                Post = Director
+                Post = Director,
+                Online = false
             };
 
             User UserProvider = new User
@@ -175,7 +174,8 @@ namespace DAL
                 Surname = "Martinuk",
                 Login = "Martinuk",
                 Password = "Martinuk",
-                Post = Provider
+                Post = Provider,
+                Online = false
             };
             context.Users.AddRange(new List<User>
             { Seller, UserManager, UserDirector, UserProvider });
