@@ -13,21 +13,21 @@ namespace DAL
             Producer Intel = new Producer
             {
                 Name = "Intel",
-                CPUs = new List<CpuFromProvider>(),
-                MotherBoards = new List<MotherBoardFromProvider>()
+                ItemFromProviders = new List<ItemFromProvider>(),
+                ItemFromShops = new List<ItemFromShop>()
 
             };
             Producer AMD = new Producer
             {
                 Name = "AMD",
-                CPUs = new List<CpuFromProvider>(),
-                MotherBoards = new List<MotherBoardFromProvider>()
+                ItemFromProviders = new List<ItemFromProvider>(),
+                ItemFromShops = new List<ItemFromShop>()
             };
             Producer MSI = new Producer
             {
                 Name = "MSI",
-                CPUs = new List<CpuFromProvider>(),
-                MotherBoards = new List<MotherBoardFromProvider>()
+                ItemFromProviders = new List<ItemFromProvider>(),
+                ItemFromShops = new List<ItemFromShop>()
             };
 
             Provider KTC = new Provider
@@ -53,7 +53,7 @@ namespace DAL
             {
                 Name = "I7700",
                 Producer = Intel,
-                Socket = "1151",
+                CpuSocket = "1151",
                 Video = "Intel HD",
                 Core = 4,
                 Threads = 8,
@@ -65,14 +65,14 @@ namespace DAL
             };
 
             ms = new MemoryStream();
-            img = Image.FromFile(@"Ryzen 7 1800X.jpg");
+            img = Image.FromFile(@"I7700.jpg");
             img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
 
             CpuFromShop Ryzen71800X = new CpuFromShop
             {
                 Name = "Ryzen 7 1800X",
                 Producer = AMD,
-                Socket = "Am4",
+                CpuSocket = "Am4",
                 Video = "None",
                 Core = 8,
                 Threads = 8,
@@ -85,14 +85,14 @@ namespace DAL
             };
             
             ms = new MemoryStream();
-            img = Image.FromFile(@"H110MPRO.jpg");
+            img = Image.FromFile(@"I7700.jpg");
             img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
           
             MotherBoardFromShop H110MProD = new MotherBoardFromShop
             {
                 Name = "H110M Pro-D",
                 Producer = MSI,
-                Socket = "1151",
+                MBSocket = "1151",
                 ChipSet = "H110M",
                 RAM = "4X DDR-4",
                 PciE = "1X Pci-E 3.0 X16, 1X Pci-E 3.0 X8",

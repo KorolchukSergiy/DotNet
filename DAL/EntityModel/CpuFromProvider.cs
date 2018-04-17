@@ -2,7 +2,7 @@
 {
     public class CpuFromProvider:ItemFromProvider
     {
-        public string Socket { get; set; }
+        public string CpuSocket { get; set; }
         public int Frequency { get; set; }
         public int Core { get; set; }
         public int Threads { get; set; }

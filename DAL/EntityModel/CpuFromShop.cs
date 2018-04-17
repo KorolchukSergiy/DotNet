@@ -8,7 +8,7 @@ namespace DAL
 {
     public class CpuFromShop : ItemFromShop
     {
-        public string Socket { get; set; }
+        public string CpuSocket { get; set; }
         public int Frequency { get; set; }
         public int Core { get; set; }
         public int Threads { get; set; }

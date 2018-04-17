@@ -72,7 +72,7 @@ namespace BLL.conversion
         //        Threads = Cpu.Threads,
         //        Frequency = Cpu.Frequency,
         //        Image = DyteArrayToBitmapImage(Cpu.Image),
-        //        Socket = Cpu.Socket,
+        //        CpuSocket = Cpu.CpuSocket,
         //        Video = Cpu.Video
         //    };
         //

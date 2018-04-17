@@ -36,7 +36,7 @@ namespace DAL.Conversion
                 Threads = Cpu.Threads,
                 Frequency = Cpu.Frequency,
                 Image = Cpu.Image,
-                Socket = Cpu.Socket,
+                Socket = Cpu.CpuSocket,
                 Video = Cpu.Video
             };
             return GetCpu;
